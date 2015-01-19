@@ -1,0 +1,26 @@
+{% load static sekizai_tags %}
+
+<div class="question-box">
+    <div class="quser-image hidden-xs">
+        {% if img == "lisa" %}
+        <img src="{% static 'img/dummy/lisa.png' %}" class="img-responsive" />
+        {% elif img == "marc" %}
+        <img src="{% static 'img/dummy/marc.png' %}" class="img-responsive" />
+        {% elif img == "denise" %}
+        <img src="{% static 'img/dummy/denise.png' %}" class="img-responsive" />
+        {% else %}
+        <img src="{% static 'img/dummy/nopic.png' %}" class="img-responsive" />
+        {% endif %}
+    </div>
+    <div class="question-details">
+        {# TODO: Icon has to be exchanged once uploaded to fontastic me #}
+        <a href="#b">{{ question|default:"This is a fake Question. Why does it work?"}} {% if checked %}<span class="read-check icon icon-accepted text-success"></span>{% endif %}</a>
+        <p class="subinfo small text-muted hidden-xs"><span>10 minutes ago by <a href="#">EugeneOC</a></span><span class="qlabels">Labels:</span><a href="#">mobiles</a>, <a href="#">phones</a>, <a href="#">devices</a></p>
+    </div>
+    <div class="counts small">
+        <div class="item {{ votes }} hidden-xs"><p><span class="item-count">{{ votescount|default:"0"}}</span> votes</p></div>
+        <div class="item {{ answers }}"><p><span class="item-count">{{ answerscount|default:"0"}}</span> <span class="item-text">answers</span></p></div>
+        <div class="item {{ views }} hidden-xs"><p><span class="item-count">{{ viewscount|default:"0"}}</span> views</p></div>
+    </div>
+</div>
+<hr class="spacer-xs" />

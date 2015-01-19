@@ -1,0 +1,32 @@
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="post-moderation">
+        <div class="community-list-header">
+            <h2>2 questions</h2>
+            {# Including the sorting markup from Bootstrap #}
+            {% include "divio_styleguide/templates/includes/sorting_list.html" with options="date activity answers votes" %}
+        </div>
+        <div class="clearfix"></div>
+        <div class="spacer-xs"></div>
+        <hr class="spacer-xs" />
+        {# Including the questions markup #}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with btndisabled=False question="Roaming not active on CH mobile?" answerscount="3" answers="item-answers" viewscount="231" views="item-views" %}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with btndisabled=False question="New bill cycle - how pro-rata has been used to calculate your bill of February" commentcount="3" answercomment="12" %}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with question="Important information regarding our services" commentcount="3" answercomment="1" %}
+    </div>
+    <div class="tab-pane fade" id="pre-moderation">
+        <div class="community-list-header">
+            <h2>4 questions</h2>
+            {# Including the sorting Markup from Bootstrap #}
+            {% include "divio_styleguide/templates/includes/sorting_list.html" with options="date activity answers votes" %}
+        </div>
+        <div class="clearfix"></div>
+        <div class="spacer-xs"></div>
+        <hr class="spacer-xs" />
+        {# Including the questions markup #}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with btndisabled=True question="Roaming not active on CH mobile?" checked=True commentcount="3" answercomment="1" %}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with question="New bill cycle - how pro-rata has been used to calculate your bill of February" answerscount="8" answers="item-answers" viewscount="231" views="item-views" %}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with question="Important information regarding our services" checked=True votescount="2" votes="item-votes" answerscount="12" answers="item-answers" viewscount="14" views="item-views" commentcount="3" answercomment="2" %}
+        {% include "divio_styleguide/templates/includes/dashboard_question.html" with question="Roaming not active on CH mobile?" %}
+    </div>
+</div>
+

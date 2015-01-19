@@ -1,0 +1,31 @@
+{% extends "two_column_body.html" %}
+{% block title %}{% trans %}Dashboard{% endtrans %}{% endblock %}
+{% block content %}
+    <h1>{% trans %}Dashboard{% endtrans %}</h1>
+    <div class="spacer-lg"></div>
+
+    {# main-container starts here #}
+    <div class="col-md-16">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#post-moderation" data-toggle="tab">Post-moderation</a></li>
+            <li><a href="#pre-moderation" data-toggle="tab">Pre-moderation</a></li>
+        </ul>
+        {% include "askbot_audit/items.html" %}
+        {# Pagination markup from Bootstrap #}
+        {#% include "divio_styleguide/templates/includes/pagination.html" %#}
+    </div>
+    {# main-container ends here #}
+{% endblock %}
+
+{% block sidebar %}
+    {% include "askbot_audit/sidebar.html" %}
+{% endblock %}
+
+{% block endjs %}
+<script>
+    $('.js-show-comments-link').on('click', function (e) {
+        e.preventDefault();
+        $(this).closest('.js-question-box').find('.js-conversation').slideToggle(700);
+    })
+</script>
+{% endblock %}

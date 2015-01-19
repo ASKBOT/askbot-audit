@@ -1,0 +1,112 @@
+<div class="col-md-8">
+    <div class="spacer hidden-xs"></div>
+    <div class="spacer-lg hidden-xs"></div>
+    <div class="spacer-lg hidden-xs"></div>
+    <div class="sidebar-box-gray-light sidebar-filters">
+        <h3>{% trans %}Filters{% endtrans %}</h3>
+        <hr class="spacer" />
+        <h4 class="h4">{% trans %}Admin Tags{% endtrans %}</h4>
+        <form action=".">
+            <fieldset>
+            {% for tag in admin_tags %} 
+                <div class="checkbox">
+                    <label>
+                        <input 
+                            type="checkbox"
+                            name="tag_{{ tag.id }}"
+                            {% if tag.id in selected_tag_ids %}
+                            checked="checked"
+                            {% endif %}
+                        >
+                        {{ tag.name }}
+                    </label>
+                </div>
+            {% endfor %}
+            </fieldset>
+        </form>
+        {% if settings.MULTIINGUAL %}
+        <hr class="spacer" />
+        <h4 class="h5">{% trans %}Language{% endtrans %}</h4>
+        <form action=".">
+            <fieldset>
+            {% for lang in settings.LANGUAGES_DICT %}
+                <div class="checkbox">
+                    <label>
+                        <input 
+                            type="checkbox"
+                            name="lang_{{ lang }}"
+                            {% if lang in selected_languages %}
+                            checked="checked"
+                            {% endif %}
+                        >
+                        {{ settings.LANGUAGES_DICT[lang] }}
+                    </label>
+                </div>
+            {% endfor %}
+            </fieldset>
+        </form>
+        {% endif %}
+        <hr class="spacer" />
+        <h4 class="h5">{% trans %}User{% endtrans %}</h4>
+        <form action=".">
+            <fieldset>
+                <div class="form-group">
+                    <input 
+                        type="text" name="user" class="form-control"
+                        value="{{ selected_user_name }}"
+                    >
+                </div>
+            </fieldset>
+        </form>
+        <hr class="spacer" />
+        <h4 class="h5">{% trans %}Date{% endtrans %}</h4>
+        {# a weird issue with the radio-knob beeing slightly to far on top of the center has to be solved #}
+        <form action="." class="form">
+            <fieldset>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="date" value="any"
+                                {% if selected_period == 'any' %}
+                                    checked="checked"
+                                {% endif %}
+                            >
+                            {% trans %}any{% endtrans %}
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="date" value="day"
+                                {% if selected_period == 'day' %}
+                                    checked="checked"
+                                {% endif %}
+                            >
+                            {% trans %}yesterday{% endtrans %}
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="date" value="week"
+                                {% if selected_period == 'week' %}
+                                    checked="checked"
+                                {% endif %}
+                            >
+                            {% trans %}last week{% endtrans %}
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="date" value="month"
+                                {% if selected_period == 'month' %}
+                                    checked="checked"
+                                {% endif %}
+                            >
+                            {% trans %}last month{% endtrans %}
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="spacer-lg"></div>
+</div>

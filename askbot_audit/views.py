@@ -9,8 +9,10 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.template.loader import get_template
 from .forms import ItemForm
+from .forms import ItemsForm
 from .models import AuditedThread
 from .models import AuditedPost
+from .models import AdminTag
 
 def home(request):
     if request.user.is_anonymous():
@@ -20,6 +22,9 @@ def home(request):
 
     data = LoadItems().get_context(request)
     #add context for the sidebar
+    data.update({
+        'admin_tags': AdminTag.objects.all(),
+    })
     return render(request, 'askbot_audit/home.html', data)
 
 
@@ -54,10 +59,25 @@ class LoadItems(PjaxView):
     template_name = 'askbot_audit/items.html'
 
     def get_context(request):
-        """items can be filtered by:
+        """Items can be selected by:
         * admin tag on the post
         * post language
         * author
         * date (all/since yesterday/last week/last month)
+
+        And sorted by:
+        * date
+        * activity
+        * answers
+        * votes
         """
-        return {} 
+        form = ItemsForm(request.GET)
+        form.full_clean()#always valid
+        data = {
+            'selected_tag_ids': form.cleaned_data['tag_ids'],
+            'selected_languages': form.cleaned_data['languages'],
+            'selected_user_name': form.cleaned_data['user_name'],
+            'selected_period': form.cleaned_data['period']
+        }
+
+        return data
