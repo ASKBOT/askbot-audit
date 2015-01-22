@@ -1,5 +1,5 @@
-from askbot.utils.decorator import ajax_only
-from askbot.utils.decorator import post_only
+from askbot.utils.decorators import ajax_only
+from askbot.utils.decorators import post_only
 from askbot.utils.views import PjaxView
 from django.http import Http404
 from django.http import HttpResponse
@@ -58,7 +58,7 @@ class LoadItems(PjaxView):
     http_method_names = ('get',)
     template_name = 'askbot_audit/items.html'
 
-    def get_context(request):
+    def get_context(self, request):
         """Items can be selected by:
         * admin tag on the post
         * post language
@@ -79,5 +79,4 @@ class LoadItems(PjaxView):
             'selected_user_name': form.cleaned_data['user_name'],
             'selected_period': form.cleaned_data['period']
         }
-
         return data

@@ -10,15 +10,15 @@
             <li class="active"><a href="#post-moderation" data-toggle="tab">Post-moderation</a></li>
             <li><a href="#pre-moderation" data-toggle="tab">Pre-moderation</a></li>
         </ul>
-        {% include "askbot_audit/items.html" %}
+        {% include "askbot_audit/includes/items.html" %}
         {# Pagination markup from Bootstrap #}
-        {#% include "divio_styleguide/templates/includes/pagination.html" %#}
+        {% include "askbot_audit/includes/pagination.html" %}
     </div>
     {# main-container ends here #}
 {% endblock %}
 
 {% block sidebar %}
-    {% include "askbot_audit/sidebar.html" %}
+    {% include "askbot_audit/includes/sidebar.html" %}
 {% endblock %}
 
 {% block endjs %}

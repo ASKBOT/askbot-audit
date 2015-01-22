@@ -11,6 +11,6 @@ except ImportError:
 from . import views
 
 urlpatterns = patterns('',
-    url('/$', views.home, name='audit_home'),
-    url('load-items/$', views.load_items, name='audit_load_items')
+    url('$', views.home, name='audit_home'),
+    url('load-items/$', views.LoadItems().as_view(), name='audit_load_items')
 )

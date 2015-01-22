@@ -18,7 +18,7 @@ class AuditedThread(models.Model):
 
 class AuditedPost(models.Model):
     post = models.ForeignKey(Post, related_name='post_audit_flags')
-    author = models.ForeignKey(User, related_name='post_audit_flags'
+    author = models.ForeignKey(User, related_name='post_audit_flags')
     admin_tags = models.ManyToManyField(AdminTag, related_name='post_audit_flags')
     language_code = models.CharField(
                             choices=django_settings.LANGUAGES,
